@@ -15,5 +15,17 @@ namespace minimal_api.Repositorios
         }
         
         public DbSet<Administrador> Administradores {get; set;}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Administrador>().HasData(
+                new Administrador{
+                    Id = -1,
+                    Email = "adminsitrador@teste.com.br",
+                    Senha = "123456",
+                    Perfil = "adm"
+                }
+            );
+        }
     }
 }

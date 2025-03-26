@@ -20,7 +20,7 @@ namespace minimal_api.Entidades
         [StringLength(10)]
         public string Perfil { get; set; }         
 
-        private Administrador()
+        public Administrador()
         {
             Email = string.Empty;
             Senha = string.Empty;
