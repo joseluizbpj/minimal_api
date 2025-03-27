@@ -15,7 +15,8 @@ namespace minimal_api.Repositorios
         }
         
         public DbSet<Administrador> Administradores {get; set;}
-
+        public DbSet<Veiculo> Veiculos {get; set;}
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Administrador>().HasData(

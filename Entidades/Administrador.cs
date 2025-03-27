@@ -12,19 +12,18 @@ namespace minimal_api.Entidades
 
         [Required]
         [StringLength(255)]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
+        [Required]
         [StringLength(50)]
-        public string Senha { get; set; }
+        public string Senha { get; set; } = string.Empty;
         
+        [Required]
         [StringLength(10)]
-        public string Perfil { get; set; }         
+        public string Perfil { get; set; } = string.Empty;    
 
         public Administrador()
         {
-            Email = string.Empty;
-            Senha = string.Empty;
-            Perfil = string.Empty;
         }
 
         public Administrador(string email, string senha)
