@@ -6,6 +6,8 @@ using minimal_api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAdministradorService, AdministradorService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DbContexto>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
     
@@ -13,4 +15,6 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 app.MapAutenticacaoEndpoint();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.Run();
