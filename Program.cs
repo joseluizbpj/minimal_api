@@ -3,6 +3,7 @@ using minimal_api.Interfaces;
 using minimal_api.Repositorios;
 using minimal_api.Services;
 using minimal_api.Endpoints;
+using minimal_api.ModelViews;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAdministradorService, AdministradorService>();
@@ -13,7 +14,7 @@ builder.Services.AddDbContext<DbContexto>(options =>
     
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => Results.Json(new Home()));
 app.MapAutenticacaoEndpoint();
 app.UseSwagger();
 app.UseSwaggerUI();
