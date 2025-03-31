@@ -15,7 +15,7 @@ namespace minimal_api.Endpoints
                     return Results.Ok("Login com sucesso.");
                 else
                     return Results.Unauthorized();
-            });
+            }).WithTags("Autenticacao");
         }
     }   
 }

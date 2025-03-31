@@ -17,7 +17,7 @@ builder.Services.AddDbContext<DbContexto>(options =>
 var app = builder.Build();
 #endregion
 
-app.MapGet("/", () => Results.Json(new Home()));
+app.MapGet("/", () => Results.Json(new Home())).WithTags("Home");
 app.MapAutenticacaoEndpoint();
 app.MapVeiculoEndpoint();
 app.UseSwagger();
