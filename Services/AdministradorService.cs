@@ -20,6 +20,18 @@ namespace minimal_api.Services
 
         public Administrador? Login(LoginDTO loginDTO)
         => _contexto.Administradores.Where(x => x.Email == loginDTO.Email && x.Senha == loginDTO.Senha).FirstOrDefault();
+
+        public Administrador Incluir(Administrador administrador)
+        {
+            _contexto.Administradores.Add(administrador);
+            _contexto.SaveChanges();
+            return administrador;
+        }   
+
+        public List<Administrador> Todos(int? pagina)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
