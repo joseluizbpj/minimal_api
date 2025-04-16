@@ -8,14 +8,8 @@ namespace minimal_api.DTOs
 {
     public class AdministradorDTO
     {
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public Perfil Perfil { get; set; }
-
-        public AdministradorDTO(string email, string senha, string perfil)
-        {
-            Email = email ?? throw new ArgumentException("Email não pode ser nulo.");
-            Senha = senha ?? throw new ArgumentException("Senha não pode ser nula.");
-        }
+        public string Email { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
+        public Perfil? Perfil { get; set; } = default!;
     }
 }

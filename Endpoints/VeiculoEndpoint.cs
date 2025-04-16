@@ -39,7 +39,7 @@ namespace minimal_api.Endpoints
 
             app.MapGet("/veiculos/{id}", ([FromRoute] int id, IVeiculoService veiculoService) =>
             {
-                var veiculo = veiculoService.BuscaPorId(id);
+                var veiculo = veiculoService.BuscarPorId(id);
 
                 if (veiculo == null)
                     return Results.NotFound();
@@ -52,7 +52,7 @@ namespace minimal_api.Endpoints
                 var validacao = ValidaDTO(veiculoDTO);
                 if (validacao.Mensagens.Count() > 0)
                     return Results.BadRequest(validacao);
-                var veiculo = veiculoService.BuscaPorId(id);
+                var veiculo = veiculoService.BuscarPorId(id);
 
                 if (veiculo == null)
                     return Results.NotFound();
@@ -67,7 +67,7 @@ namespace minimal_api.Endpoints
 
             app.MapDelete("/veiculos/{id}", ([FromRoute] int id, IVeiculoService veiculoService) =>
             {
-                var veiculo = veiculoService.BuscaPorId(id);
+                var veiculo = veiculoService.BuscarPorId(id);
 
                 if (veiculo == null)
                     return Results.NotFound();

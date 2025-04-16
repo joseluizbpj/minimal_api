@@ -30,7 +30,7 @@ namespace minimal_api.Services
             _contexto.SaveChanges();
         }
 
-        public Veiculo? BuscaPorId(int id)
+        public Veiculo? BuscarPorId(int id)
         => _contexto.Veiculos.Where(x => x.Id == id).FirstOrDefault();        
 
         public void Incluir(Veiculo veiculo)

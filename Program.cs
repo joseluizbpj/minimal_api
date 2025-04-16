@@ -20,6 +20,7 @@ var app = builder.Build();
 app.MapGet("/", () => Results.Json(new Home())).WithTags("Home");
 app.MapAutenticacaoEndpoint();
 app.MapVeiculoEndpoint();
+app.MapAdministradorEndpoint();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.Run();

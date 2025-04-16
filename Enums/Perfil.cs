@@ -7,7 +7,7 @@ namespace minimal_api.Enums
 {
     public enum Perfil
     {
-        adm,
-        editor  
+        Adm,
+        Editor  
     }
 }

@@ -30,8 +30,16 @@ namespace minimal_api.Services
 
         public List<Administrador> Todos(int? pagina)
         {
-            throw new NotImplementedException();
+            int itensPorPagina = 10;
+            var queryAdministradores = _contexto.Administradores.AsQueryable();
+            if(pagina != null)
+                queryAdministradores = queryAdministradores.Skip(((int)pagina - 1) * itensPorPagina).Take(itensPorPagina);
+
+            return queryAdministradores.ToList();
         }
+
+        public Administrador? BuscarPorId(int id)
+        => _contexto.Administradores.Where(x => x.Id == id).FirstOrDefault();      
     }
 
 }
