@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using minimal_api.DTOs;
@@ -41,7 +42,7 @@ namespace minimal_api.Endpoints
                         Email = administrador.Email,
                         Perfil = administrador.Perfil
                     });
-            }).RequireAuthorization().WithTags("Administradores");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm"}).WithTags("Administradores");
 
             app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorService administradorService) => 
             {
@@ -56,7 +57,7 @@ namespace minimal_api.Endpoints
                     });
                 }
                 return Results.Ok(adms);
-            }).RequireAuthorization().WithTags("Administradores");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm"}).WithTags("Administradores");
 
             app.MapGet("/administradores/{id}", ([FromRoute] int id, IAdministradorService administradorService) =>
             {
@@ -69,7 +70,7 @@ namespace minimal_api.Endpoints
                         Id = administrador.Id,
                         Email = administrador.Email,
                         Perfil = administrador.Perfil});
-            }).RequireAuthorization().WithTags("Administradores");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm"}).WithTags("Administradores");
         }
     }
 }

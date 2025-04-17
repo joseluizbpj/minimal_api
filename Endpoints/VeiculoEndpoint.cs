@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using minimal_api.DTOs;
 using minimal_api.Interfaces;
@@ -29,7 +30,7 @@ namespace minimal_api.Endpoints
                 veiculoService.Incluir(veiculo);
 
                 return Results.Created($"/veiculo/{veiculo.Id}", veiculo);
-            }).RequireAuthorization().WithTags("Veiculos");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm, Editor"}).WithTags("Veiculos");
 
             app.MapGet("/veiculos", ([FromQuery] int? pagina, IVeiculoService veiculoService) =>
             {
@@ -45,7 +46,7 @@ namespace minimal_api.Endpoints
                     return Results.NotFound();
 
                 return Results.Ok(veiculo);
-            }).RequireAuthorization().WithTags("Veiculos");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm, Editor"}).WithTags("Veiculos");
 
             app.MapPut("/veiculos/{id}", ([FromRoute] int id, VeiculoDTO veiculoDTO, IVeiculoService veiculoService) =>
             {
@@ -63,7 +64,7 @@ namespace minimal_api.Endpoints
                 veiculoService.Atualizar(veiculo);
 
                 return Results.Ok(veiculo);
-            }).RequireAuthorization().WithTags("Veiculos");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm"}).WithTags("Veiculos");
 
             app.MapDelete("/veiculos/{id}", ([FromRoute] int id, IVeiculoService veiculoService) =>
             {
@@ -75,7 +76,7 @@ namespace minimal_api.Endpoints
                 veiculoService.Apagar(veiculo);
 
                 return Results.NoContent();
-            }).RequireAuthorization().Produces(204).WithTags("Veiculos");
+            }).RequireAuthorization(new AuthorizeAttribute{ Roles = "Adm"}).Produces(204).WithTags("Veiculos");
         }
 
         private static ErrosDeValidacao ValidaDTO(VeiculoDTO veiculoDTO)

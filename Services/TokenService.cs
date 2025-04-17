@@ -28,7 +28,8 @@ namespace minimal_api.Services
             var claims = new[]
             {
                 new Claim("Perfil", administrador.Perfil),
-                new Claim(ClaimTypes.Email, administrador.Email)
+                new Claim(ClaimTypes.Email, administrador.Email),
+                new Claim(ClaimTypes.Role, administrador.Perfil)
             };
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!));
