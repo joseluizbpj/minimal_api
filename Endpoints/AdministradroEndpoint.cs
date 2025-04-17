@@ -41,7 +41,7 @@ namespace minimal_api.Endpoints
                         Email = administrador.Email,
                         Perfil = administrador.Perfil
                     });
-            }).WithTags("Administradores");
+            }).RequireAuthorization().WithTags("Administradores");
 
             app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorService administradorService) => 
             {
@@ -56,7 +56,7 @@ namespace minimal_api.Endpoints
                     });
                 }
                 return Results.Ok(adms);
-            }).WithTags("Administradores");
+            }).RequireAuthorization().WithTags("Administradores");
 
             app.MapGet("/administradores/{id}", ([FromRoute] int id, IAdministradorService administradorService) =>
             {
@@ -69,7 +69,7 @@ namespace minimal_api.Endpoints
                         Id = administrador.Id,
                         Email = administrador.Email,
                         Perfil = administrador.Perfil});
-            }).WithTags("Administradores");
+            }).RequireAuthorization().WithTags("Administradores");
         }
     }
 }

@@ -29,13 +29,13 @@ namespace minimal_api.Endpoints
                 veiculoService.Incluir(veiculo);
 
                 return Results.Created($"/veiculo/{veiculo.Id}", veiculo);
-            }).WithTags("Veiculos");
+            }).RequireAuthorization().WithTags("Veiculos");
 
             app.MapGet("/veiculos", ([FromQuery] int? pagina, IVeiculoService veiculoService) =>
             {
                 var veiculos = veiculoService.Todos(pagina);
                 return Results.Ok(veiculos);
-            }).WithTags("Veiculos");
+            }).RequireAuthorization().WithTags("Veiculos");
 
             app.MapGet("/veiculos/{id}", ([FromRoute] int id, IVeiculoService veiculoService) =>
             {
@@ -45,7 +45,7 @@ namespace minimal_api.Endpoints
                     return Results.NotFound();
 
                 return Results.Ok(veiculo);
-            }).WithTags("Veiculos");
+            }).RequireAuthorization().WithTags("Veiculos");
 
             app.MapPut("/veiculos/{id}", ([FromRoute] int id, VeiculoDTO veiculoDTO, IVeiculoService veiculoService) =>
             {
@@ -63,7 +63,7 @@ namespace minimal_api.Endpoints
                 veiculoService.Atualizar(veiculo);
 
                 return Results.Ok(veiculo);
-            }).WithTags("Veiculos");
+            }).RequireAuthorization().WithTags("Veiculos");
 
             app.MapDelete("/veiculos/{id}", ([FromRoute] int id, IVeiculoService veiculoService) =>
             {
@@ -75,7 +75,7 @@ namespace minimal_api.Endpoints
                 veiculoService.Apagar(veiculo);
 
                 return Results.NoContent();
-            }).Produces(204).WithTags("Veiculos");
+            }).RequireAuthorization().Produces(204).WithTags("Veiculos");
         }
 
         private static ErrosDeValidacao ValidaDTO(VeiculoDTO veiculoDTO)
