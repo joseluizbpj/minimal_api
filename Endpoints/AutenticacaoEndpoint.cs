@@ -26,7 +26,7 @@ namespace minimal_api.Endpoints
                 }
                 else
                     return Results.Unauthorized();
-            }).WithTags("Autenticacao");
+            }).AllowAnonymous().WithTags("Autenticacao");
         }
     }   
 }

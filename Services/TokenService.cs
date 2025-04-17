@@ -22,6 +22,8 @@ namespace minimal_api.Services
         public string GerarToken(Administrador administrador)
         {
             var key = _configuration["Jwt:Key"];
+            var issuer = _configuration["Jwt:issuer"];
+            var audience = _configuration["Jwt:audience"];
 
             var claims = new[]
             {
@@ -33,6 +35,8 @@ namespace minimal_api.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: credentials
